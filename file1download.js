@@ -2,14 +2,15 @@
     const https = require('https');
     const puppeteer = require('puppeteer');
     
+    const urlRemote = 'https://roszdravnadzor.gov.ru/opendata/7710537160-medproducts'
     
-    async function downloadWithLinks() {
+    async function downloadWithLinks(url) {
         const browser = await puppeteer.launch({
             headless: true
         });
         const page = await browser.newPage();
         await page.goto(
-            'https://roszdravnadzor.gov.ru/opendata/7710537160-medproducts', 
+            url, 
             { waitUntil: 'networkidle2' }
         );
         
@@ -25,4 +26,4 @@
         browser.close()
     }  
 
-    downloadWithLinks()
+    downloadWithLinks(urlRemote)
