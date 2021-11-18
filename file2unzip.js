@@ -1,6 +1,9 @@
 const fs = require('fs');
 const unzipper = require('unzipper') 
 
-fs.createReadStream('data.zip')
+const fileZip = 'data.zip'
+const fileCsv = 'data-win1251.csv'
+
+fs.createReadStream(fileZip)
   .pipe(unzipper.ParseOne())
-  .pipe(fs.createWriteStream('./data-win1251.csv'));
+  .pipe(fs.createWriteStream('./'+fileCsv));
