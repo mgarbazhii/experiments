@@ -3,6 +3,7 @@
     const puppeteer = require('puppeteer');
     
     const urlRemote = 'https://roszdravnadzor.gov.ru/opendata/7710537160-medproducts'
+    const fileout = 'data.zip'
     
     async function downloadWithLinks(url) {
         const browser = await puppeteer.launch({
@@ -17,7 +18,7 @@
         const aUrl = await page.$eval('.download-link', a => a.href);
         
         https.get(aUrl, res => {
-            const stream = fs.createWriteStream('data.zip');
+            const stream = fs.createWriteStream(fileout);
             res.pipe(stream);
             stream.on('finish', () => {
                 stream.close();
